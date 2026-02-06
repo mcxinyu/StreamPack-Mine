@@ -67,7 +67,7 @@ internal class MicrophoneSource(@AudioSourceValue val audioSource: Int) :
  * @param audioSource the audio source to use (e.g., MediaRecorder.AudioSource.MIC)
  * @param effects a set of audio effects to apply to the audio source
  */
-class MicrophoneSourceFactory(
+open class MicrophoneSourceFactory(
     @AudioSourceValue val audioSource: Int = MediaRecorder.AudioSource.CAMCORDER,
     effects: Set<UUID> = defaultAudioEffects
 ) :
