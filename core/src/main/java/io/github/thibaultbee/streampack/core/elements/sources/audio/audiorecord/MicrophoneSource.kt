@@ -69,13 +69,13 @@ internal class MicrophoneSource(@AudioSourceValue val audioSource: Int) :
  */
 open class MicrophoneSourceFactory(
     @AudioSourceValue val audioSource: Int = MediaRecorder.AudioSource.CAMCORDER,
-    effects: Set<UUID> = defaultAudioEffects
-) :
-    AudioRecordSourceFactory(effects) {
+    val effectSet: Set<UUID> = defaultAudioEffects
+) : AudioRecordSourceFactory(effectSet) {
     override suspend fun createImpl(context: Context) = MicrophoneSource(audioSource)
 
     override fun isSourceEquals(source: IAudioSourceInternal?): Boolean {
         return source is MicrophoneSource && this.audioSource == source.audioSource
+                && this.effects.joinToString() == effectSet.joinToString()
     }
 
     override fun toString(): String {
